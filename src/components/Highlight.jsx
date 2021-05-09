@@ -4,7 +4,6 @@ import modifyUrl from "../utils/modifyUrl"
 
 
 const Index = ({urlHistory, sendUrlHistoryToState}) => {
-
     const [value, setValue] = useState(0) 
 
     let lastPhoto = {}
@@ -14,10 +13,7 @@ const Index = ({urlHistory, sendUrlHistoryToState}) => {
 
     const handleInput = event => {
         setValue(event.target.value);  
-        sendUrlHistoryToState({
-            name: lastPhoto.name,
-            url: `${valuesUrl.url}?high=-${value}${valuesUrl.photo_props.map(i=>"&"+i)}` 
-        } )
+        
     };
 
     let valuesUrl = modifyUrl(lastPhoto.url, "high")
@@ -34,9 +30,12 @@ const Index = ({urlHistory, sendUrlHistoryToState}) => {
                     <label className="ml-2 text-white font-bold italic">{value}</label>
                 </div> 
                 <div class="relative pl-2 pr-2 pt-2">
-                    <button
-                        className="bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">
-                        Highlight
+                <button className="bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"
+                        onClick={() => sendUrlHistoryToState({
+                            name: lastPhoto.name,
+                            url: `${valuesUrl.url}?high=-${value}${valuesUrl.photo_props.map(i=>"&"+i)}` 
+                        } )} >
+                            Highlight
                     </button>
                 </div>
             </div>)
@@ -44,7 +43,7 @@ const Index = ({urlHistory, sendUrlHistoryToState}) => {
 
 
 const mapStateToProps = state => ({
-    urlHistory: state.urlHistory
+    urlHistory: state.urlHistory 
   })
   
 const mapDispatchToProps = dispatch => ({ 

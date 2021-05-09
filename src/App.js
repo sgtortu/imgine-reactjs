@@ -7,16 +7,18 @@ import Header from "./components/structure/Header"
 import LeftMenu from "./components/structure/LeftMenu"
 import CenterContent from "./components/structure/CenterContent"
 import RigthMenu from "./components/structure/RigthMenu"
+import Footer from "./components/structure/Footer"
 
 function App() {
   return (
     <Provider store={store}>
-      <Header /> 
-      <main className="flex w-full h-screen">
-        <LeftMenu /> 
-        <CenterContent /> 
-        <RigthMenu /> 
-      </main>
+        <Header /> 
+        <main className="flex w-full h-screen">
+          <LeftMenu /> 
+          <CenterContent /> 
+          <RigthMenu /> 
+        </main> 
+        <Footer /> 
     </Provider>
   );
 }

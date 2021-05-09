@@ -2,7 +2,7 @@ import { createStore } from "redux"
 
 const initialState = { 
     photos: [],
-    urlHistory: []
+    urlHistory: [] 
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +19,8 @@ const reducer = (state = initialState, action) => {
         }
     }
     if (action.type === "CHANGE_ORDER_HISTORY") {  
+        console.log(action.payload) 
+
         return {
             ...state,
             urlHistory: action.payload

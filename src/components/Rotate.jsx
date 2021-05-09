@@ -35,7 +35,7 @@ const Index = ({urlHistory, sendUrlHistoryToState}) => {
 
 
 const mapStateToProps = state => ({
-    urlHistory: state.urlHistory
+    urlHistory: state.urlHistory 
   })
   
 const mapDispatchToProps = dispatch => ({ 

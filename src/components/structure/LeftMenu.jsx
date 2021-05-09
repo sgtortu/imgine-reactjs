@@ -9,18 +9,47 @@ const Index = ({photos, sendPhotosToState, sendUrlHistoryToState}) => {
         .then(data => sendPhotosToState(data));
     },[])
  
-    return (<aside className="w-80 h-screen bg-gray shadow-md w-fulll hidden sm:block">
-                <div className="flex flex-col justify-between h-screen p-4 bg-gray-800">
-                    <div className="bg-gray-900">
-                        <div className="bg-gray-600  text-white p-5 rounded cursor-pointer">Select a photo</div>
-                         {photos.map( photo => (
-                            <button onClick={() => sendUrlHistoryToState(photo)} className="w-full text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">
+    return (<div class="overflow-y-auto flex min-h-screen">
+                <nav class="w-64 flex-shrink-0">
+                <div class="flex-auto bg-gray-900 h-full">
+                    <div class="flex flex-col overflow-y-auto">
+                    <ul class="relative m-0 p-0 list-none h-full">
+                    
+                        <li class="text-white p-4 w-full flex relative shadow-sm justify-start bg-gray-800 border-b-2 border-gray-700">
+                        
+                        <div class="flex-auto my-1">
+                            <span>Project Overview</span>
+                        </div>
+                        </li>
+                        <li class="p-4 w-full flex relative shadow-sm">
+                        <div class="flex-auto my-1">
+                            <span class="text-white font-medium">Develop</span>
+                        </div>
+                        </li>
+            
+                        {photos.map( photo => (
+                        <div class="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
+                        <div class="mr-4 my-auto">
+                            <svg class="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z"></path></svg>            </div>
+                        <div class="flex-auto my-1">
+                            <a onClick={() => sendUrlHistoryToState(photo)} className="text-white rounded  cursor-pointer hover:bg-gray-700 hover:text-blue-300">
                                 {photo.name}
-                            </button>
+                            </a>
+                        </div>
+                        </div>
                          ))}
-                    </div> 
+            
+                    
+                    </ul>
+                    </div>
                 </div>
-            </aside>
+                </nav>
+            
+            </div>
+    
+    
+    
+     
     )
 }
  
@@ -29,7 +58,7 @@ const mapStateToProps = state => ({
   })
   
 const mapDispatchToProps = dispatch => ({
-    sendPhotosToState(data) {
+    sendPhotosToState(data) { 
         dispatch({
             type: "LOAD_PHOTOS",
             payload: data
