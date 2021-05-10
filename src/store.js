@@ -6,28 +6,27 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    if (action.type === "LOAD_PHOTOS") {
-        return {
-            ...state,
-            photos: action.payload
-        }
-    }
-    if (action.type === "URL_HISTORY") {  
-        return {
-            ...state,
-            urlHistory: state.urlHistory.concat(action.payload)
-        }
-    }
-    if (action.type === "CHANGE_ORDER_HISTORY") {  
-        console.log(action.payload) 
-
-        return {
-            ...state,
-            urlHistory: action.payload
-        }
-    }
+    switch (action.type) {
+        case 'LOAD_PHOTOS':
+            return {
+                ...state,
+                photos: action.payload
+            }
+        case 'URL_HISTORY':
+            return {
+                ...state,
+                urlHistory: state.urlHistory.concat(action.payload)
+            }
+        case 'CHANGE_ORDER_HISTORY':
+            return {
+                ...state,
+                urlHistory: action.payload 
+            }
+        default:
+            return state
+      
     
     return state
-}
+}}
 
 export default createStore(reducer)

@@ -1,48 +1,63 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { connect } from "react-redux";
 import Imgix from "react-imgix";
+import store from "../../store"
 
 const Index = ({ urlHistory, changeOrderHistory }) => {
 
-    let defaultOb = {
-        name: "Select a picture",
-        url: "https://assets.imgix.net/examples/pione.jpg"
-    }
-    const [lastPhoto, setLastPhoto] = useState(
-        urlHistory.length > 0 ? urlHistory[urlHistory.length - 1] 
-        :defaultOb) 
- 
-    useEffect(()=>{
-        setLastPhoto(urlHistory[urlHistory.length - 1] )
-    },[])    
-    // const back = (e) => {
-    //     e.preventDefault()
-    //     if (actualPhoto <= -1 && actualPhoto > (-urlHistory.length)) {
-    //         changePhoto(actualPhoto - 1)
-    //     }
-    // };
-    // const to = (e) => {
-    //     e.preventDefault()
-    //     if (actualPhoto < -1 && actualPhoto >= (-urlHistory.length)) {
-    //         changePhoto(actualPhoto + 1)
-    //     }
-    //     console.log(actualPhoto)
-    // };
+    let saved = store.getState().urlHistory
+    let lastPhoto = saved[saved.length - 1]
 
-    return (<section className="w-full p-4 bg-gradient-to-r from-gray-800 to-green-900">
-        <div className="text-white text-lg">{lastPhoto.name}</div>
+    let changeOrderBack = (list) => {
+        let last = list.pop()
+        list.unshift(last)
+        changeOrderHistory(list)
+        lastPhoto = list[list.length - 1]
+    };
+    let changeOrderTo = () => {
+        let list = urlHistory.reverse()
+        let last = list.pop()
+        list = list.reverse()
+        list.push(last)
+        changeOrderHistory(list)
+        lastPhoto = list[list.length - 1]
+    };
 
-        <div className="w-full h-full p-4 text-md">
-            <Imgix
-                src={lastPhoto.url}
-            />
+    return (<section className="w-full p-4 bg-gradient-to-r from-gray-900 to-gray-800">
+        <div className="grid justify-items-center">
+            <div>
+                <div className="text-white ml-3 ">History</div>
+                <button onClick={() => changeOrderBack(urlHistory)} className=" text-white p-2 rounded cursor-pointer hover:bg-gray-700 hover:text-blue-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+                    </svg>
+                </button>
+                <button onClick={() => changeOrderTo(urlHistory)} className=" text-white p-2 rounded cursor-pointer hover:bg-gray-700 hover:text-blue-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+            </div>
         </div>
+        {lastPhoto ?
+            <>
+                <div className="text-white text-lg">{lastPhoto.name}</div>
+                <div className="w-full h-full p-4 text-md">
+                    <Imgix
+                        src={lastPhoto.url}
+                    />
+                </div>
+            </>
+            :
+            <div className="text-lg text-center mt-12 text-white ml-3 ">Select an image...</div>
+        }
     </section>
     )
 }
 
 const mapStateToProps = (state) => ({
-    urlHistory: state.urlHistory 
+    urlHistory: state.urlHistory,
+    actualPhoto: state.actualPhoto
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -51,7 +66,7 @@ const mapDispatchToProps = dispatch => ({
             type: "CHANGE_ORDER_HISTORY",
             payload: data
         })
-    } 
+    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

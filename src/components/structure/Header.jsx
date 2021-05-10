@@ -8,7 +8,7 @@ const Index = () => {
                 <a href="#" className="p-2">IMGine</a>
             </div> 
             <div className="text-white text-lg hidden sm:block">
-                <a href="#" className="p-2">Selecciona una imagen, imagina y crea.</a>
+                <a href="#" className="p-2">Select an image, imagine and create.</a>
             </div> 
         </header> 
     )

@@ -13,7 +13,7 @@ function App() {
   return (
     <Provider store={store}>
         <Header /> 
-        <main className="flex w-full h-screen">
+        <main className="flex w-full h-screen bg-gray-900">
           <LeftMenu /> 
           <CenterContent /> 
           <RigthMenu /> 

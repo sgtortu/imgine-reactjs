@@ -22,13 +22,19 @@ const Index = ({urlHistory, sendUrlHistoryToState}) => {
                     <input onChange={handleInput} min="0" max="359"  type="number" className="w-full pl-3 pr-10 py-2 border-1 border-gray-200 rounded-sm  hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors" placeholder="Degrees..." />
                 </div>
                 <div class="relative pl-2 pr-2 pt-2">
+                    {urlHistory.length > 0 ? 
                     <button className="bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"
-                        onClick={() => sendUrlHistoryToState({
-                            name: lastPhoto.name,  
-                            url: `${valuesUrl.url}?rot=-${value}${valuesUrl.photo_props.map(i=>"&"+i)}` 
-                        } )} >
+                    onClick={() => sendUrlHistoryToState({
+                        name: lastPhoto.name,  
+                        url: `${valuesUrl.url}?rot=-${value}${valuesUrl.photo_props.map(i=>"&"+i)}` 
+                    } )} >
                         Rotate
                     </button>
+                    :
+                    <button className="disabled bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">
+                        Rotate
+                    </button>
+                    }
                 </div>
             </div>)
 }
