@@ -23,7 +23,7 @@ const Index = ({urlHistory, sendUrlHistoryToState}) => {
                 </div>
                 <div className="relative pl-2 pr-2 pt-2">
                     {urlHistory.length > 0 ? 
-                    <button className="bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"
+                    <button className="bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-800 hover:text-blue-300"
                     onClick={() => sendUrlHistoryToState({
                         name: lastPhoto.name,  
                         url: `${valuesUrl.url}?rot=-${value}${valuesUrl.photo_props.map(i=>"&"+i)}` 

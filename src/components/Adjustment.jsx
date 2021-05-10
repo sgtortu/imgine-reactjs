@@ -4,7 +4,8 @@ import modifyUrl from "../utils/modifyUrl"
 
 
 const Index = ({ urlHistory, sendUrlHistoryToState, type, min, max, defaultValue }) => {
-    const [value, setValue] = useState(0)
+    
+    const [value, setValue] = useState(defaultValue)
 
     let typeInUrl = ""
     switch (type) {
@@ -46,14 +47,14 @@ return (<div className="bg-gray-600 mt-4">
                 type="range"
                 min={min}
                 max={max} 
-                value={defaultValue} 
-                className="bg-gray-900 "
+                value={value} 
+                className="rounded-lg bg-gray-400 h-3 w-128 "
             />
             <label className="ml-2 text-white font-bold italic">{value}</label>
         </div>
         <div className="relative pl-2 pr-2 pt-2">
             {urlHistory.length > 0 ? 
-            <button className="bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"
+            <button className="bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-800 hover:text-blue-300"
                 onClick={() => sendUrlHistoryToState({
                     name: lastPhoto.name,
                     url: `${valuesUrl.url}?${typeInUrl}=${value}${valuesUrl.photo_props.map(i => "&" + i)}`
