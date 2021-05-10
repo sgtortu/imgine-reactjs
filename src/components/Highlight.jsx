@@ -19,17 +19,18 @@ const Index = ({ urlHistory, sendUrlHistoryToState }) => {
     let valuesUrl = modifyUrl(lastPhoto.url, "high")
 
     return (<div className="bg-gray-600 mt-4">
-        <div class="relative pl-2 pt-2">
+        <div className="relative pl-2 pt-2">
             <input
                 onChange={handleInput}
                 type="range"
                 min="0"
                 max="100"
+                id="range"
                 className="bg-gray-900 "
             />
             <label className="ml-2 text-white font-bold italic">-{value}</label>
         </div>
-        <div class="relative pl-2 pr-2 pt-2">
+        <div className="relative pl-2 pr-2 pt-2">
             {urlHistory.length > 0 ? 
             <button className="bg-gray-900 w-full text-white p-2 rounded mb-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"
                 onClick={() => sendUrlHistoryToState({

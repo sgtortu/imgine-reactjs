@@ -2,7 +2,8 @@ import { createStore } from "redux"
 
 const initialState = { 
     photos: [],
-    urlHistory: [] 
+    urlHistory: [], 
+    actualImage:""
 }
 
 const reducer = (state = initialState, action) => {
@@ -18,9 +19,11 @@ const reducer = (state = initialState, action) => {
                 urlHistory: state.urlHistory.concat(action.payload)
             }
         case 'CHANGE_ORDER_HISTORY':
-            return {
+        console.log(action.payload[action.payload.length - 1])    
+        return {
                 ...state,
-                urlHistory: action.payload 
+                urlHistory: action.payload,
+                actualImage: action.payload[action.payload.length - 1]
             }
         default:
             return state

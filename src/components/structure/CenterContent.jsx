@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import Imgix from "react-imgix";
 import store from "../../store"
 
-const Index = ({ urlHistory, changeOrderHistory }) => {
+const Index = ({actualImage, urlHistory, changeOrderHistory }) => {
 
     let saved = store.getState().urlHistory
     let lastPhoto = saved[saved.length - 1]
+    console.log(saved)
+    console.log(actualImage)
 
     let changeOrderBack = (list) => {
-        let last = list.pop()
+    console.log(list)
+    let last = list.pop()
         list.unshift(last)
         changeOrderHistory(list)
         lastPhoto = list[list.length - 1]
@@ -28,13 +31,13 @@ const Index = ({ urlHistory, changeOrderHistory }) => {
             <div>
                 <div className="text-white ml-3 ">History</div>
                 <button onClick={() => changeOrderBack(urlHistory)} className=" text-white p-2 rounded cursor-pointer hover:bg-gray-700 hover:text-blue-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
                     </svg>
                 </button>
                 <button onClick={() => changeOrderTo(urlHistory)} className=" text-white p-2 rounded cursor-pointer hover:bg-gray-700 hover:text-blue-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </button>
             </div>
@@ -42,7 +45,7 @@ const Index = ({ urlHistory, changeOrderHistory }) => {
         {lastPhoto ?
             <>
                 <div className="text-white text-lg">{lastPhoto.name}</div>
-                <div className="w-full h-full p-4 text-md">
+                <div className="w-full h-full p-4 text-md overflow-y-scroll">
                     <Imgix
                         src={lastPhoto.url}
                     />
@@ -56,8 +59,8 @@ const Index = ({ urlHistory, changeOrderHistory }) => {
 }
 
 const mapStateToProps = (state) => ({
-    urlHistory: state.urlHistory,
-    actualPhoto: state.actualPhoto
+    urlHistory: state.urlHistory, 
+    actualImage: state.actualImage 
 })
 
 const mapDispatchToProps = dispatch => ({

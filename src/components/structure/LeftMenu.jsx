@@ -21,12 +21,12 @@ const Index = ({ photos, sendPhotosToState, sendUrlHistoryToState }) => {
                             </div>
                         </li>
 
-                        {photos.map(photo => (
-                            <div className="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
+                        {photos.map((photo,index )=> (
+                            <div key={index} className="text-gray-400 flex relative px-4 hover:bg-gray-700 cursor-pointer">
                                 <div className="mr-4 my-auto">
                                     <svg className="fill-current h-5 w-5" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z"></path></svg>            </div>
                                 <div className="flex-auto my-1">
-                                    <a onClick={() => sendUrlHistoryToState(photo)} classNameName="text-white rounded  cursor-pointer hover:bg-gray-700 hover:text-blue-300">
+                                    <a onClick={() => sendUrlHistoryToState(photo)} className="text-white rounded  cursor-pointer hover:bg-gray-700 hover:text-blue-300">
                                         {photo.name}
                                     </a>
                                 </div>
