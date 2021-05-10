@@ -7,9 +7,7 @@ const Index = ({actualImage, urlHistory, changeOrderHistory }) => {
 
     let saved = store.getState().urlHistory
     let lastPhoto = saved[saved.length - 1]
-    console.log(saved)
-    console.log(actualImage)
-
+ 
     let changeOrderBack = (list) => {
     console.log(list)
     let last = list.pop()
